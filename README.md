@@ -2,9 +2,9 @@
 DAA Project implementing various sorting techniques:
 
 
-1. Smoothsort
-2. Gnome Sort
-2. Sehgal Sort
-3. Bitonic Sort
-5. Timsort
-6. Introsort 
+1. Smoothsort - Mehul
+2. Gnome Sort - Mehul
+2. Sehgal Sort - Kartikeya
+3. Bitonic Sort - Kartikeya
+5. Timsort - Kota
+6. Introsort - Kota 
