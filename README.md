@@ -18,6 +18,7 @@ DAA Project implementing various sorting techniques:
 
 2. Sehgal Sort
 
+```
 SehgalSort():
 	// declare 3 arrays a1, a2, a3
 	// input values into a1
@@ -29,3 +30,4 @@ SehgalSort():
 				a3[j++] = a2[i]
 				a[i] = -1
 	// print sorted array a3
+```
