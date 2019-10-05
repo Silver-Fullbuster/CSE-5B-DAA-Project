@@ -14,18 +14,9 @@ const int kLeonardoNumbers[kNumLeonardoNumbers] = {
         126491971u, 204668309u, 331160281u, 535828591u, 866988873u, 1402817465u,
 };
 
-
-void makeLeonardoTree(int arr[], unsigned start,
-                      int order) { //TODO: it checks the whole tree, doesn't need to. Replace completely with heapify
-    if (order > 2) {
-        makeLeonardoTree(arr, start, order - 1);
-        makeLeonardoTree(arr, start + kLeonardoNumbers[order - 1], order - 2);
-    }
-    if (order > 1) {
-        unsigned root = start + kLeonardoNumbers[order] - 1, largest = root, left, right;
-        int temp;
-        left = start + kLeonardoNumbers[order - 1] - 1;
-        right = root - 1;
+void heapify(int arr[], int root, int start, int order) {
+    if(order > 1) {
+        int left = start + kLeonardoNumbers[order - 1] - 1, right = root - 1, largest = root, temp;
         if (arr[root] < arr[left])
             largest = left;
         if (arr[largest] < arr[right])
@@ -34,22 +25,21 @@ void makeLeonardoTree(int arr[], unsigned start,
             temp = arr[largest];
             arr[largest] = arr[root];
             arr[root] = temp;
-            makeLeonardoTree(arr, start, order - 1);
+            heapify(arr, left, start, order - 1);
         } else if (largest == right) {
             temp = arr[largest];
             arr[largest] = arr[root];
             arr[root] = temp;
-            makeLeonardoTree(arr, start + kLeonardoNumbers[order - 1], order - 2);
+            heapify(arr, right, start + kLeonardoNumbers[order - 1], order - 2);
         }
     }
 }
 
-void heapify(int arr[], const int i) {
+void startHeapify(int *arr, const int i) {
     int start = 0, loopI;
     for (loopI = 0;
          loopI < sizeN && (start + kLeonardoNumbers[size[loopI]] - 1) != i; start += kLeonardoNumbers[size[loopI++]]);
-    makeLeonardoTree(arr, start, size[loopI]);
-
+    heapify(arr, i, start, size[loopI]);
 }
 
 void balanceHeap(int arr[], int i, int sizeN) {
@@ -75,7 +65,7 @@ void balanceHeap(int arr[], int i, int sizeN) {
             root -= size[--sizeI];
         } else break;
     }
-    heapify(arr, next);
+    startHeapify(arr, next);
 }
 
 void addToHeap(int arr[], int i) {
@@ -88,9 +78,6 @@ void addToHeap(int arr[], int i) {
     } else {
         size[sizeN++] = 1;
     }
-
-    // Modified Insertion Sort //TODO: WIP
-
     balanceHeap(arr, i, sizeN);
 }
 
@@ -100,12 +87,12 @@ void makeLeonardoHeap(int arr[], int n) {
         addToHeap(arr, i);
 }
 
-void removeFromHeap(int arr[], int *n){
+void removeFromHeap(int arr[], int *n) {
     (*n)--;
-    if(size[sizeN - 1] > 1) {
+    if (size[sizeN - 1] > 1) {
         size[sizeN] = size[sizeN - 1] - 2;
         size[sizeN++ - 1]--;
-        if(size[sizeN - 2] == 1)
+        if (size[sizeN - 2] == 1)
             balanceHeap(arr, (*n) - 2, sizeN - 1);
         balanceHeap(arr, (*n) - 1, sizeN);
     } else {
@@ -113,9 +100,9 @@ void removeFromHeap(int arr[], int *n){
     }
 }
 
-void smoothSort(int arr[], int n){
+void smoothSort(int arr[], int n) {
     makeLeonardoHeap(arr, n);
-    while(n > 1){
+    while (n > 1) {
         removeFromHeap(arr, &n);
     }
 }
