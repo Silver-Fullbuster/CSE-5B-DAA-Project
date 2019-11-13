@@ -7,7 +7,7 @@ DAA Project implementing various sorting techniques:
 2. Sehgal Sort - Kartikeya
 3. Bitonic Sort - Kartikeya
 5. Timsort - Kota
-6. Introsort - Kota 
+6. Pancake Sort - Kota 
 
 
 
