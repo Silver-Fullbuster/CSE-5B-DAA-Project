@@ -18,7 +18,19 @@ int main() {
             }
         }
     }
-   for(i = 0; i < n; i++)
+    int key;
+    j=0;
+    for(i=1;i<n;i++){ 
+        key = arr3[i]; 
+        j = i - 1; 
+        while(j >= 0 && arr[j] > key){ 
+            arr3[j+1] = arr3[j]; 
+            j = j - 1; 
+        } 
+        arr3[j+1] = key; 
+    } 
+
+    for(i = 0; i < n; i++)
        printf("%d ", arr3[i]);
     return 0;
 }
