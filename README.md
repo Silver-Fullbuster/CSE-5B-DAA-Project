@@ -29,7 +29,8 @@ SehgalSort():
 			if not a1[i]:
 				a3[j++] = a2[i]
 				a[i] = -1
-	// print sorted array a3
+	// Apply Insertion Sort on nearly sorted array arr3
+        // print sorted array a3
 ```
 
 3. Bitonic Sort
