@@ -23,7 +23,7 @@ int main() {
     for(i=1;i<n;i++){ 
         key = arr3[i]; 
         j = i - 1; 
-        while(j >= 0 && arr[j] > key){ 
+        while(j >= 0 && arr3[j] > key){ 
             arr3[j+1] = arr3[j]; 
             j = j - 1; 
         } 
